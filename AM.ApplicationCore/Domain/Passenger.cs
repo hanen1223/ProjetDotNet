@@ -38,6 +38,13 @@ namespace AM.ApplicationCore.Domain
         {
             return FirstName == nom && LastName == prenom && EmailAddress == email;
         }
+        public bool CheckProfile2(string firstName = "", string lastName = "", string email = "")
+        {
+            return (string.IsNullOrEmpty(firstName) || this.FirstName == firstName) &&
+                   (string.IsNullOrEmpty(lastName) || this.LastName == lastName) &&
+                   (string.IsNullOrEmpty(email) || this.EmailAddress == email);
+        }
+
         public Passenger()
         {
                 

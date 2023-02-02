@@ -110,6 +110,16 @@ Console.WriteLine(pasn.CheckProfile("Hanen", "hammouda", "hanen.hammouda@esprit.
 
 Console.WriteLine("************  Le Polymorphisme Q10  c ************* ");
 
+bool result = pasn.CheckProfile2("Hanen", "hammouda", "hanen.hammouda@esprit.tn");
+Console.WriteLine(result); // True
+
+result = pasn.CheckProfile2("Jg", "Dok", "hanen.hammouda@esprit.tn");
+Console.WriteLine(result); // False
+
+result = pasn.CheckProfile2("Hanen", "hammouda", "");
+Console.WriteLine(result); // True
+
+
 Console.WriteLine("************  Le Polymorphisme Q11 a b c ************* ");
  Passenger pas1 = new Passenger();
 Console.WriteLine(pas1.PassengerType());
