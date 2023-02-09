@@ -25,33 +25,36 @@ namespace AM.ApplicationCore.Domain
         public string LastName { get; set; }
         public int TelNumber { get; set; }
         public int PassportNumber { get; set; }
-        List<Flight> Flights { get; set; }
+        public ICollection<Flight> Flights { get; set; }
         public override string ToString()
         {
             return base.ToString();
         }
-        public bool CheckProfile(string nom, string prenom)
+        //public bool checkProfil(string nom, string prenom) {
+
+        //    return FirstName==nom && LastName==prenom;
+        //}
+        //public bool checkProfil(string nom, string prenom,string email)
+        //{
+
+        //    return FirstName == nom && LastName == prenom && EmailAddress==email;
+        //}
+        public bool checkProfil(string nom, string prenom, string email = null)
         {
-            return FirstName == nom && LastName == prenom;
-        }
-        public bool CheckProfile(string nom, string prenom, string email)
-        {
+            if (email == null)
+            {
+                return FirstName == nom && LastName == prenom;
+            }
             return FirstName == nom && LastName == prenom && EmailAddress == email;
-        }
-        public bool CheckProfile2(string firstName = "", string lastName = "", string email = "")
-        {
-            return (string.IsNullOrEmpty(firstName) || this.FirstName == firstName) &&
-                   (string.IsNullOrEmpty(lastName) || this.LastName == lastName) &&
-                   (string.IsNullOrEmpty(email) || this.EmailAddress == email);
         }
 
         public Passenger()
         {
                 
         }
-        public virtual string PassengerType()
+        public virtual void PassengerType()
         {
-            return "I am a passenger";
+            Console.WriteLine("I am a passenger");
         }
     }
 }

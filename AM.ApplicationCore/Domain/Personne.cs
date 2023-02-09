@@ -23,8 +23,8 @@ namespace AM.ApplicationCore.Domain
         //}
         public Personne()
         {
-
-        }//ctor double tabulation 
+            nb++;
+        }//ctor + double tabulation 
         public Personne(string prenom, string nom, string confirmPassword, string email, string password, DateTime dateNaissance)
         {
             Prenom = prenom;
@@ -60,6 +60,7 @@ namespace AM.ApplicationCore.Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime DateNaissance { get; set; }
+        public static int nb { get; set; }
         public int Id { get; set; }
 
         public override string ToString()// tektb override tatl3 

@@ -14,9 +14,14 @@ namespace AM.ApplicationCore.Domain
         {
             return base.ToString()+" "+HealthInformation+" "+ Nationality;
         }
-        public override string PassengerType()
+        //public override string PassengerType()
+        //{
+        //    return base.PassengerType() + " I am a traveller ";
+        //}
+        public virtual void PassengerType()
         {
-            return base.PassengerType() + " I am a traveller ";
+            base.PassengerType();
+            Console.WriteLine("I am a Traveller");
         }
     }
 }

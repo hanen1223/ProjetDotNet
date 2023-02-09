@@ -12,12 +12,13 @@ namespace AM.ApplicationCore.Domain
     }
     public class Plane
     {
+        public Plane() { }
         public int Capacity { get; set; }
         public DateTime ManufactureDate { get; set; }
         public int PlaneId { get; set; }
         public PlaneType planeType { get; set; }
-        List<Flight> Flights { get; set; }
-        List<Passenger> Passenger { get; set; }
+        public ICollection<Flight> Flights { get; set; }
+        //List<Passenger> Passenger { get; set; }
         public override string ToString()
         {
             return "Capacity: " + Capacity + ", ManufactureDate: " + ManufactureDate + ", PlaneType: " + planeType;
@@ -29,7 +30,7 @@ namespace AM.ApplicationCore.Domain
         //    this.ManufactureDate = date;
             
         //}
-        //public Plane() { }
+        
 
     }
 }

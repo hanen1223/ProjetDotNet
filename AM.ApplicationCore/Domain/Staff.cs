@@ -15,9 +15,14 @@ namespace AM.ApplicationCore.Domain
         {
             return base.ToString()+" "+EmployementDate+" "+Function+" "+Salary;
         }
-        public override string PassengerType()
+        //public override string PassengerType()
+        //{
+        //    return base.PassengerType()+ " I am a Staff member";
+        //}
+        public override void PassengerType()
         {
-            return base.PassengerType()+ " I am a Staff member";
+            Console.WriteLine("I am a passenger I am a Staff Member");
         }
+
     }
 }

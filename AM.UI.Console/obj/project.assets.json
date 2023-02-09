@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\EmnaKhanfir-4SE5\\AM.UI.Console\\AM.UI.Console.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.Console\\AM.UI.Console.csproj",
       "projectName": "AM.UI.Console",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\EmnaKhanfir-4SE5\\AM.UI.Console\\AM.UI.Console.csproj",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.Console\\AM.UI.Console.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\EmnaKhanfir-4SE5\\AM.UI.Console\\obj\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.Console\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\EmnaKhanfir-4SE5\\AM.ApplicationCore\\AM.ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\EmnaKhanfir-4SE5\\AM.ApplicationCore\\AM.ApplicationCore.csproj"
+            "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.ApplicationCore\\AM.ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.ApplicationCore\\AM.ApplicationCore.csproj"
             }
           }
         }

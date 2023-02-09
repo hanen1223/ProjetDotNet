@@ -35,7 +35,10 @@
 
 //}
 using AM.ApplicationCore.Domain;
+using AM.ApplicationCore.Services;
+using System.Collections;
 using System.Net.Mail;
+//using System.Numerics;
 using System.Security.Cryptography;
 
 Personne p = new Personne();// constructeur par defaut
@@ -49,8 +52,8 @@ p.ConfirmPassword = "0000";
 Console.WriteLine(p);
 
 //constructeur parametrer
-Personne p1 = new Personne("prenom","nom","confirmPassword","email","password",DateTime.Now);
-Console.WriteLine(p1);
+//Personne p1 = new Personne("prenom","nom","confirmPassword","email","password",DateTime.Now);
+//Console.WriteLine(p1);
 //iniyialisateur d'objet
 Personne p2 = new Personne()
 {
@@ -72,11 +75,11 @@ p.GetMyType();
 c.GetMyType();
 
 //Console.WriteLine("************  Instanciation des objets Q7  ************* ");
-//Plane pl = new Plane();
-//pl.Capacity = 200;
-//pl.ManufactureDate = new DateTime(2023, 1, 1);
-//pl.planeType = PlaneType.Boing;
-//Console.WriteLine(pl);
+Plane pl = new Plane();
+pl.Capacity = 200;
+pl.ManufactureDate = new DateTime(2023, 1, 1);
+pl.planeType = PlaneType.Boing;
+Console.WriteLine(pl);
 
 //Console.WriteLine("************  Instanciation des objets Q8  ************* ");
 //Plane avion = new Plane(PlaneType.Airbus,100, DateTime.Now);
@@ -101,29 +104,54 @@ TelNumber = 50066282,
 PassportNumber = 123456
 };
 
-bool Result = pasn.CheckProfile("Hgganen","hammouda");
+bool Result = pasn.checkProfil("Hanen", "hammouda");
 if (Result) { Console.WriteLine("nom est correct"); }
 else Console.WriteLine("incorrect");
 
 Console.WriteLine("************  Le Polymorphisme Q10  b ************* ");
-Console.WriteLine(pasn.CheckProfile("Hanen", "hammouda", "hanen.hammouda@esprit.tn"));
-
-Console.WriteLine("************  Le Polymorphisme Q10  c ************* ");
-
-bool result = pasn.CheckProfile2("Hanen", "hammouda", "hanen.hammouda@esprit.tn");
-Console.WriteLine(result); // True
-
-result = pasn.CheckProfile2("Jg", "Dok", "hanen.hammouda@esprit.tn");
-Console.WriteLine(result); // False
-
-result = pasn.CheckProfile2("Hanen", "hammouda", "");
-Console.WriteLine(result); // True
-
+Console.WriteLine(pasn.checkProfil("Hanen", "hammouda", "hanen.hammouda@esprit.tn"));
 
 Console.WriteLine("************  Le Polymorphisme Q11 a b c ************* ");
- Passenger pas1 = new Passenger();
-Console.WriteLine(pas1.PassengerType());
-Passenger pas2 = new Staff();
-Console.WriteLine(pas2.PassengerType());
-Passenger pas3 = new Traveller();
-Console.WriteLine(pas3.PassengerType());
+Passenger traveller = new Traveller();
+Passenger staff = new Staff();
+Passenger Passenger = new Passenger();
+traveller.PassengerType();
+staff.PassengerType();
+Passenger.PassengerType();
+//collection des objets non génériques
+ArrayList list = new ArrayList();
+list.Add(pl);
+list.Add(1);
+list.Add("Bonjour");
+
+for (int i = 0; i < list.Count; i++)
+{
+    Console.WriteLine(list[i]);
+}
+foreach (var item in list)
+{
+    Console.WriteLine(item);
+}
+//collection des objets génériques
+IList<Plane> planes = new List<Plane>();
+//IList:Ienumerable,Icollection
+//ICollection:IEnumerable
+//IEnumerable: assure le parcour des listes uniquement
+//ICollection: les méthode des parcours et l'insertion(add, remove, recherche ...)
+planes.Add(pl);
+planes.Add(avion2);
+IList<Plane> planes1 = new List<Plane>()
+{
+    pl,avion2,new Plane(){Capacity=12,PlaneId=4, ManufactureDate=new DateTime(2022,11,11)}
+};
+Personne p11 = new Personne();
+Console.WriteLine(Personne.nb);
+Personne p22 = new Personne();
+Console.WriteLine(Personne.nb);
+Personne p33 = new Personne();
+Console.WriteLine(Personne.nb);
+
+Console.WriteLine("************ TP2 5- ************* ");
+ServiceFlight serviceFlight = new ServiceFlight();
+serviceFlight.Flights = TestData.Flights;
+
