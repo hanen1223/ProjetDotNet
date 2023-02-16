@@ -13,7 +13,7 @@ namespace AM.ApplicationCore.Domain
         public int FlightId { get; set;}
         public DateTime FlightDate { get; set; }
         public DateTime EffectiveArrival { get; set; }
-        public float EstimationDuration { get; set; }
+        public int EstimationDuration { get; set; }
         public Plane plane { get; set; }
         public ICollection<Passenger> passengers { get; set; }
         public override string ToString()

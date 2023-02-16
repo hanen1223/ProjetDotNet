@@ -154,4 +154,15 @@ Console.WriteLine(Personne.nb);
 Console.WriteLine("************ TP2 5- ************* ");
 ServiceFlight serviceFlight = new ServiceFlight();
 serviceFlight.Flights = TestData.Flights;
+serviceFlight.GetFlights("Paris",delegate(Flight f,String c)
+{
+    return f.Destination == c;
+}
+);
+serviceFlight.GetFlights("2023/01/01", delegate (Flight f, String c)
+{
+    return f.FlightDate.Equals(c);
+}
+);
+
 
