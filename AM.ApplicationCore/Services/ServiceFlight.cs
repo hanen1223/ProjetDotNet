@@ -3,6 +3,7 @@ using AM.ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,28 +22,39 @@ namespace AM.ApplicationCore.Services
             //        dates.Add(Flights[i].FlightDate);
             //}
             //return dates;
-            List<DateTime> dates = new List<DateTime>();
-            foreach (var flight in Flights)
-            {
-                if (flight.Destination == destination)
-                {
-                    dates.Add(flight.FlightDate);
-                   
-                }
+            //methode 2
+            //  List<DateTime> dates = new List<DateTime>();
 
-            }
-            return dates;
+            //foreach (var flight in Flights)
+            //{
+            //    if (flight.Destination == destination)
+            //    {
+            //        dates.Add(flight.FlightDate);
+
+            //    }
+
+            //}
+            // return dates;
+            //methode3 :requete
+            //var query = from f in Flights where f.Destination==destination select f.FlightDate;
+            //return query.ToList();//Execution et convertion de type
+
+            //methode3 :requete
+            var query = Flights
+                        .Where(f => f.Destination == destination)
+                        .Select(f => f.FlightDate).ToList();
+            return query;
         }
         // question 8 
-        public void GetFlights( string filterValue, Func<Flight, String, Boolean> condition)
+        public void GetFlights(string filterValue, Func<Flight, String, Boolean> condition)
         {
             List<Flight> flights = new List<Flight>();
-           // Func<Flight,String,Boolean> condition=null;
+            // Func<Flight,String,Boolean> condition=null;
             foreach (var flight in Flights)
             {
-                if (condition(flight,filterValue))
+                if (condition(flight, filterValue))
                 {
-                   flights.Add(flight);
+                    flights.Add(flight);
                     Console.WriteLine(flight);
 
                 }
@@ -171,7 +183,100 @@ namespace AM.ApplicationCore.Services
         {
             throw new NotImplementedException();
         }
+        void ShowFlightDetails(Plane plane)
+        {
+            var query = Flights
+                .Where(f => f.plane.PlaneId == plane.PlaneId)
+                .Select(f => new { f.Destination, f.FlightDate });
+            foreach (var item in query)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        int ProgrammedFlightNumber(DateTime startDate)
+        {
+            var query = Flights
+               .Count(f => f.FlightDate > startDate && (f.FlightDate - startDate).TotalDays < 7);
+            // .Where(f => f.FlightDate > startDate && (f.FlightDate - startDate).TotalDays < 7)
+            // .Count();
+            return query;
+        }
+        Double DurationAverage(string destination)
+        {
+            var query = Flights
+                .Where(f => f.Destination.Equals(destination))
+                .Average(f => f.EstimationDuration);
+            return query;
+        }
+       List<Flight> OrderedDurationFlights()
+        {
+            var query = from f in Flights orderby(f.EstimationDuration) descending select (f);
+            //var query = Flights
+                //.OrderByDescending(f => f.EstimationDuration).ToList();   
+            return query.ToList();
+        }
+        //List<Passenger> SensiorTravellers(Flight flight)
+        List<Traveller> SensiorTravellers(Flight flight)
+        {
+            var query = flight.passengers.OfType<Traveller>()
+               // .Where(p => p is Traveller)
+                .OrderBy(p => p.BirthDate).Take(3).ToList();
+            List<Passenger> p = new List<Passenger>(query); //cas implicite w9t n5alou return passenger
+            //return query.ToList();
+            return query;
+        }
+        void DestinationGroupedFlights()
+        {
+            var query = Flights
+                .GroupBy(f => f.Destination).ToList();
+            foreach(var f in query)
+            {
+                Console.WriteLine("Destination:"+f.Key);
+                foreach(var g in f )
+                {
+                    Console.WriteLine("Decollage"+g.FlightDate);
+                }
+            }
 
-        
+        }
+        //public void ShowFlightDetails(Domain.Plane plane)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        int IServiceFlight.ProgrammedFlightNumber(DateTime startDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        double IServiceFlight.DurationAverage(string destination)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Flight> IServiceFlight.OrderedDurationFlights()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Passenger> IServiceFlight.SensiorTravellers(Flight flight)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IServiceFlight.ShowFlightDetails(Plane plane)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IServiceFlight.DestinationGroupedFlights()
+        {
+            throw new NotImplementedException();
+        }
+
+        //void IServiceFlight.ShowFlightDetails(Plane plane)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
