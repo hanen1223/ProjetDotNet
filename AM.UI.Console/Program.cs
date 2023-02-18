@@ -35,6 +35,7 @@
 
 //}
 using AM.ApplicationCore.Domain;
+using AM.ApplicationCore.Interfaces;
 using AM.ApplicationCore.Services;
 using System.Collections;
 using System.Net.Mail;
@@ -164,5 +165,26 @@ serviceFlight.GetFlights("2023/01/01", delegate (Flight f, String c)
     return f.FlightDate.Equals(c);
 }
 );
+foreach (var flight in serviceFlight.GetFlightDates("Paris"))
+{
+    Console.WriteLine("le date est: " + flight);
+};
+//Console.WriteLine(serviceFlight.DurationAverageDel("Paris"));
+serviceFlight.ShowFlightDetails(pl);
+Console.WriteLine("la moyenne de durée estimées des vols:");
+Console.WriteLine(serviceFlight.DurationAverage("Paris"));
+Console.WriteLine("le nombre de vols programmés pour une semaine (7jours):");
+Console.WriteLine(serviceFlight.ProgrammedFlightNumber(new DateTime(2022, 01, 01)));
+
+foreach (var flight in serviceFlight.OrderedDurationFlights()) 
+{
+    Console.WriteLine("l'ordere est: " + flight);
+};
+foreach (var f in serviceFlight.SeniorTravellers(TestData.F1))
+{
+    Console.WriteLine("les senior travellers: "+f.FirstName);
+};
+Console.WriteLine("les vols groupés par destination: ");
+serviceFlight.DestinationGroupedFlights();
 
 

@@ -13,10 +13,10 @@ namespace AM.ApplicationCore.Interfaces
         public void GetFlights(string filterType, string filterValue);
         public void ShowFlightDetails(Plane plane);
         public int ProgrammedFlightNumber(DateTime startDate);
-        Double DurationAverage(string destination);
-        List<Flight> OrderedDurationFlights();
-        List<Passenger> SensiorTravellers(Flight flight);
-        void DestinationGroupedFlights();
+        public double DurationAverage(string destination);
+        public List<Flight> OrderedDurationFlights();
+        public List<Passenger> SeniorTravellers(Flight flight);
+        public void DestinationGroupedFlights();
 
     }
 

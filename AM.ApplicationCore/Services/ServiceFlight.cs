@@ -6,11 +6,12 @@ using System.Linq;
 
 using System.Text;
 using System.Threading.Tasks;
-
 namespace AM.ApplicationCore.Services
 {
     public class ServiceFlight : IServiceFlight
     {
+        public Action <Plane> FlightDetailsDel;
+        public Func<string, double> DurationAverageDel;
         public List<Flight> Flights { get; set; } = new List<Flight>();
 
         public List<DateTime> GetFlightDates(string destination)
@@ -183,7 +184,7 @@ namespace AM.ApplicationCore.Services
         {
             throw new NotImplementedException();
         }
-        void ShowFlightDetails(Plane plane)
+        public void ShowFlightDetails(Plane plane)
         {
             var query = Flights
                 .Where(f => f.plane.PlaneId == plane.PlaneId)
@@ -193,7 +194,7 @@ namespace AM.ApplicationCore.Services
                 Console.WriteLine(item);
             }
         }
-        int ProgrammedFlightNumber(DateTime startDate)
+        public int ProgrammedFlightNumber(DateTime startDate)
         {
             var query = Flights
                .Count(f => f.FlightDate > startDate && (f.FlightDate - startDate).TotalDays < 7);
@@ -201,14 +202,14 @@ namespace AM.ApplicationCore.Services
             // .Count();
             return query;
         }
-        Double DurationAverage(string destination)
+        public double DurationAverage(string destination)
         {
             var query = Flights
                 .Where(f => f.Destination.Equals(destination))
                 .Average(f => f.EstimationDuration);
             return query;
         }
-       List<Flight> OrderedDurationFlights()
+       public List<Flight> OrderedDurationFlights()
         {
             var query = from f in Flights orderby(f.EstimationDuration) descending select (f);
             //var query = Flights
@@ -216,7 +217,7 @@ namespace AM.ApplicationCore.Services
             return query.ToList();
         }
         //List<Passenger> SensiorTravellers(Flight flight)
-        List<Traveller> SensiorTravellers(Flight flight)
+        public List<Traveller> SeniorTravellers(Flight flight)
         {
             var query = flight.passengers.OfType<Traveller>()
                // .Where(p => p is Traveller)
@@ -225,7 +226,7 @@ namespace AM.ApplicationCore.Services
             //return query.ToList();
             return query;
         }
-        void DestinationGroupedFlights()
+        public void DestinationGroupedFlights()
         {
             var query = Flights
                 .GroupBy(f => f.Destination).ToList();
@@ -234,16 +235,11 @@ namespace AM.ApplicationCore.Services
                 Console.WriteLine("Destination:"+f.Key);
                 foreach(var g in f )
                 {
-                    Console.WriteLine("Decollage"+g.FlightDate);
+                    Console.WriteLine("Decollage: "+g.FlightDate);
                 }
             }
 
         }
-        //public void ShowFlightDetails(Domain.Plane plane)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         int IServiceFlight.ProgrammedFlightNumber(DateTime startDate)
         {
             throw new NotImplementedException();
@@ -259,7 +255,7 @@ namespace AM.ApplicationCore.Services
             throw new NotImplementedException();
         }
 
-        List<Passenger> IServiceFlight.SensiorTravellers(Flight flight)
+        List<Passenger> IServiceFlight.SeniorTravellers(Flight flight)
         {
             throw new NotImplementedException();
         }
@@ -273,10 +269,29 @@ namespace AM.ApplicationCore.Services
         {
             throw new NotImplementedException();
         }
-
-        //void IServiceFlight.ShowFlightDetails(Plane plane)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        /************* Partie IV*****************/
+        public ServiceFlight()
+        {
+            /* FlightDetailsDel = ShowFlightDetails;
+             DurationAverageDel = DurationAverage; */
+            FlightDetailsDel = plane =>
+            {
+                var query = Flights
+               .Where(f => f.plane.PlaneId == plane.PlaneId)
+               .Select(f => new { f.Destination, f.FlightDate });
+                foreach (var item in query)
+                {
+                    Console.WriteLine(item);
+                }
+            };
+            DurationAverageDel = dAv =>
+            {
+                var query = from f in Flights
+                          where (f.Destination == dAv)
+                          select f.EstimationDuration;
+                return query.Average();
+            };
+        }
     }
 }
+
