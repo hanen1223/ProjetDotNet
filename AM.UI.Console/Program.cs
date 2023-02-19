@@ -99,18 +99,18 @@ Console.WriteLine("************  Le Polymorphisme Q10 a  ************* ");
 Passenger pasn = new Passenger() {
     BirthDate = new DateTime(2023, 1, 1),
 EmailAddress = "hanen.hammouda@esprit.tn",
-    FirstName = "Hanen",
+    FirstName = "hanen",
 LastName = "hammouda",
 TelNumber = 50066282,
 PassportNumber = 123456
 };
 
-bool Result = pasn.checkProfil("Hanen", "hammouda");
+bool Result = pasn.checkProfil("hanen", "hammouda");
 if (Result) { Console.WriteLine("nom est correct"); }
 else Console.WriteLine("incorrect");
 
 Console.WriteLine("************  Le Polymorphisme Q10  b ************* ");
-Console.WriteLine(pasn.checkProfil("Hanen", "hammouda", "hanen.hammouda@esprit.tn"));
+Console.WriteLine(pasn.checkProfil("hanen", "hammouda", "hanen.hammouda@esprit.tn"));
 
 Console.WriteLine("************  Le Polymorphisme Q11 a b c ************* ");
 Passenger traveller = new Traveller();
@@ -169,7 +169,6 @@ foreach (var flight in serviceFlight.GetFlightDates("Paris"))
 {
     Console.WriteLine("le date est: " + flight);
 };
-//Console.WriteLine(serviceFlight.DurationAverageDel("Paris"));
 serviceFlight.ShowFlightDetails(pl);
 Console.WriteLine("la moyenne de durée estimées des vols:");
 Console.WriteLine(serviceFlight.DurationAverage("Paris"));
@@ -186,5 +185,14 @@ foreach (var f in serviceFlight.SeniorTravellers(TestData.F1))
 };
 Console.WriteLine("les vols groupés par destination: ");
 serviceFlight.DestinationGroupedFlights();
-
-
+Console.WriteLine("IV- Expressions Lambda / Les méthodes LINQ prédéfinies: ");
+Console.WriteLine(serviceFlight.DurationAverageDel("Paris"));
+serviceFlight.FlightDetailsDel(avion2);
+Passenger pasn1 = new Passenger()
+{
+    FirstName = "stormi",
+    LastName = "store"
+};
+Console.WriteLine(" ******** Résultat de la méthode d’ extension UpperFullName **************");
+pasn1.UpperFullName();
+Console.WriteLine(pasn1.ToString());

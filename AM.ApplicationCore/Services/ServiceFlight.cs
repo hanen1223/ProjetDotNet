@@ -286,12 +286,13 @@ namespace AM.ApplicationCore.Services
             };
             DurationAverageDel = dAv =>
             {
-                var query = from f in Flights
-                          where (f.Destination == dAv)
-                          select f.EstimationDuration;
-                return query.Average();
+                var query = Flights
+                .Where(f => f.Destination.Equals(dAv))
+                .Average(f => f.EstimationDuration);
+                return query;
             };
         }
     }
+    
 }
 

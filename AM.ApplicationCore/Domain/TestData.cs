@@ -21,9 +21,6 @@ namespace AM.ApplicationCore.Domain
         Capacity=250,ManufactureDate=new DateTime(2020,11,11)
 
         }
-
-
-
         };
         public static List<Staff> Staff { get; set; } = new List<Staff>() {
         new Staff()

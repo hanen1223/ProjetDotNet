@@ -26,9 +26,14 @@ namespace AM.ApplicationCore.Domain
         public int TelNumber { get; set; }
         public int PassportNumber { get; set; }
         public ICollection<Flight> Flights { get; set; }
+        //public override string ToString()
+        //{
+        //    return base.ToString();
+        //}
         public override string ToString()
         {
-            return base.ToString();
+            return "Passenger : FirstName= " + FirstName + " , LastName= " + LastName + " , BirthDate= " + BirthDate +
+                " , TelNumber= " + TelNumber + " , EmailAddress= " + EmailAddress + " , Passeport Number= " + "\n";
         }
         //public bool checkProfil(string nom, string prenom) {
 
