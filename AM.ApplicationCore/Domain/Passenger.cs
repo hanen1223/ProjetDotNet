@@ -25,6 +25,7 @@ namespace AM.ApplicationCore.Domain
         public string LastName { get; set; }
         public int TelNumber { get; set; }
         public int PassportNumber { get; set; }
+        public int Id { get; set; }
         public ICollection<Flight> Flights { get; set; }
         //public override string ToString()
         //{
