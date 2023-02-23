@@ -196,3 +196,6 @@ Passenger pasn1 = new Passenger()
 Console.WriteLine(" ******** Résultat de la méthode d’ extension UpperFullName **************");
 pasn1.UpperFullName();
 Console.WriteLine(pasn1.ToString());
+int a = 11;
+Console.WriteLine(a.add(20));
+

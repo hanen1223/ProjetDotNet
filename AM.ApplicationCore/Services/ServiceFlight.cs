@@ -10,8 +10,7 @@ namespace AM.ApplicationCore.Services
 {
     public class ServiceFlight : IServiceFlight
     {
-        public Action <Plane> FlightDetailsDel;
-        public Func<string, double> DurationAverageDel;
+       
         public List<Flight> Flights { get; set; } = new List<Flight>();
 
         public List<DateTime> GetFlightDates(string destination)
@@ -270,11 +269,13 @@ namespace AM.ApplicationCore.Services
             throw new NotImplementedException();
         }
         /************* Partie IV*****************/
-        public ServiceFlight()
+        public Action<Plane> FlightDetailsDel { get; set; }//prop +double tabulation
+        public Func<string, double> DurationAverageDel { get; set; }
+        public ServiceFlight()//ctor +double tabulation
         {
-            /* FlightDetailsDel = ShowFlightDetails;
+            /*FlightDetailsDel = ShowFlightDetails;
              DurationAverageDel = DurationAverage; */
-            FlightDetailsDel = plane =>
+            FlightDetailsDel = (Plane plane) =>
             {
                 var query = Flights
                .Where(f => f.plane.PlaneId == plane.PlaneId)
