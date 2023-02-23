@@ -197,6 +197,7 @@ Console.WriteLine(" ******** Résultat de la méthode d’ extension UpperFullNa
 pasn1.UpperFullName();
 Console.WriteLine(pasn1);
 //Console.WriteLine(pasn1.ToString());
+
 // test des methode extension
 int a = 11;
 Console.WriteLine(a.add(20));
