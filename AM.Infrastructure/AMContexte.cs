@@ -13,6 +13,7 @@ namespace AM.Infrastructure
         public DbSet<Flight> Flights { get; set; }//ctrl+;
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Plane> Planes { get; set; }
+        public DbSet<test2> test2s { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Traveller> Travellers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
