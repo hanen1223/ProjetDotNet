@@ -1,4 +1,5 @@
 ﻿using AM.ApplicationCore.Domain;
+using AM.Infrastructure.Configuuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,12 @@ namespace AM.Infrastructure
             optionsBuilder.UseSqlServer(@"Data Source=(localDB)\MsSqlLocalDb; initial catalog=HanenHammouda;Integrated Security=true");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /* modelBuilder.Entity<Flight>().HasKey(f=>f.FlightId);
+             modelBuilder.Entity<Flight>().ToTable("MyFlight");
+             modelBuilder.Entity<Flight>().Property(j=>j.Departure).IsRequired().HasMaxLength(100).HasColumnName("ville de departure").HasDefaultValue("Tounes").HasColumnType("nchar");*/ //t7awlt l FlightConfiguration.cs
+            modelBuilder.ApplyConfiguration(new FlightConfiguration());
+        }
     }
 }
