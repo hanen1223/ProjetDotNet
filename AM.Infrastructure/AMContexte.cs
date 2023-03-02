@@ -29,5 +29,10 @@ namespace AM.Infrastructure
              modelBuilder.Entity<Flight>().Property(j=>j.Departure).IsRequired().HasMaxLength(100).HasColumnName("ville de departure").HasDefaultValue("Tounes").HasColumnType("nchar");*/ //t7awlt l FlightConfiguration.cs
             modelBuilder.ApplyConfiguration(new FlightConfiguration());
         }
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+           configurationBuilder.Properties<String>().HaveMaxLength(120);
+        }
     }
 }
