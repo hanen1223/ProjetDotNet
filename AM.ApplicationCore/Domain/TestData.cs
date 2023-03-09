@@ -25,8 +25,8 @@ namespace AM.ApplicationCore.Domain
         public static List<Staff> Staff { get; set; } = new List<Staff>() {
         new Staff()
         {
-            FirstName="captain",
-            LastName="capitain",
+            //FirstName="captain",
+            //LastName="capitain",
             EmailAddress="Captain.captain@gmail.com",
             BirthDate=new DateTime(1995,01,01),
             EmployementDate=new DateTime(1999,01,01),
@@ -36,8 +36,8 @@ namespace AM.ApplicationCore.Domain
         public static List<Traveller> Traveller { get; set; } = new List<Traveller>() {
         new Traveller()
         {
-             FirstName="Traveller1",
-            LastName="Traveller1",
+            // FirstName="Traveller1",
+            //LastName="Traveller1",
             EmailAddress="Traveller1.Traveller1@gmail.com",
             BirthDate=new DateTime(1980,01,01),
             HealthInformation="No trouble",
@@ -45,8 +45,7 @@ namespace AM.ApplicationCore.Domain
         },
          new Traveller()
         {
-             FirstName="Traveller2",
-            LastName="Traveller2",
+          
             EmailAddress="Traveller2.Traveller1@gmail.com",
             BirthDate=new DateTime(1970,01,01),
             HealthInformation="No trouble1",
@@ -54,8 +53,7 @@ namespace AM.ApplicationCore.Domain
         },
           new Traveller()
         {
-             FirstName="Traveller3",
-            LastName="Traveller3",
+            
             EmailAddress="Traveller3.Traveller1@gmail.com",
             BirthDate=new DateTime(1990,01,01),
             HealthInformation="No trouble2",
