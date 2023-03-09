@@ -4,6 +4,7 @@ using AM.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.Infrastructure.Migrations
 {
     [DbContext(typeof(AMContexte))]
-    partial class AMContexteModelSnapshot : ModelSnapshot
+    [Migration("20230309140732_preconvention4")]
+    partial class preconvention4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,14 +205,13 @@ namespace AM.Infrastructure.Migrations
 
                             b1.Property<string>("FirstName")
                                 .IsRequired()
-                                .HasMaxLength(30)
-                                .HasColumnType("nvarchar(30)");
+                                .HasMaxLength(120)
+                                .HasColumnType("nvarchar(120)");
 
                             b1.Property<string>("LastName")
                                 .IsRequired()
-                                .HasMaxLength(30)
-                                .HasColumnType("nvarchar(30)")
-                                .HasColumnName("lastname");
+                                .HasMaxLength(120)
+                                .HasColumnType("nvarchar(120)");
 
                             b1.HasKey("PassengerPassportNumber");
 

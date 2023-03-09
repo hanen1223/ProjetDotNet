@@ -1,4 +1,5 @@
 ﻿using AM.ApplicationCore.Domain;
+using AM.Infrastructure.Configuration;
 using AM.Infrastructure.Configuuration;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,6 +29,7 @@ namespace AM.Infrastructure
              modelBuilder.Entity<Flight>().ToTable("MyFlight");
              modelBuilder.Entity<Flight>().Property(j=>j.Departure).IsRequired().HasMaxLength(100).HasColumnName("ville de departure").HasDefaultValue("Tounes").HasColumnType("nchar");*/ //t7awlt l FlightConfiguration.cs
             modelBuilder.ApplyConfiguration(new FlightConfiguration());
+            modelBuilder.ApplyConfiguration(new PassengerConfiguration());  
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -35,7 +37,6 @@ namespace AM.Infrastructure
            configurationBuilder.Properties<String>().HaveMaxLength(120);
            configurationBuilder.Properties<DateTime>().HaveColumnType("date");
            configurationBuilder.Properties<Double>().HavePrecision(2,3);
-
         }
     }
 }
