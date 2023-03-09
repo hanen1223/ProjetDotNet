@@ -33,6 +33,8 @@ namespace AM.Infrastructure
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {
            configurationBuilder.Properties<String>().HaveMaxLength(120);
+           configurationBuilder.Properties<DateTime>().HaveColumnType("date");
+           configurationBuilder.Properties<Double>().HavePrecision(2,3);
         }
     }
 }
