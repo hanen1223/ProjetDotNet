@@ -70,7 +70,7 @@ namespace AM.ApplicationCore.Domain
                 EffectiveArrival=new DateTime(2022, 01, 01, 17, 10, 10),
                 plane= Planes[1],
                 EstimationDuration=110,
-                passengers= new List<Passenger>(Traveller),
+               // passengers= new List<Passenger>(Traveller),
 
             },
             new Flight()
@@ -80,7 +80,7 @@ namespace AM.ApplicationCore.Domain
                 EffectiveArrival=new DateTime(2022, 01, 01, 17, 10, 10),
                 plane= Planes[1],
                 EstimationDuration=150,
-                passengers= new List<Passenger>(Traveller),
+               // passengers= new List<Passenger>(Traveller),
 
             },
 
@@ -101,7 +101,7 @@ namespace AM.ApplicationCore.Domain
             EffectiveArrival = new DateTime(2022, 01, 01),
             plane = Planes[1],
             EstimationDuration = 110,
-            passengers = new List<Passenger>(Traveller)
+            //passengers = new List<Passenger>(Traveller)
 
 
         };

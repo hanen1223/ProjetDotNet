@@ -30,6 +30,7 @@ namespace AM.Infrastructure
              modelBuilder.Entity<Flight>().Property(j=>j.Departure).IsRequired().HasMaxLength(100).HasColumnName("ville de departure").HasDefaultValue("Tounes").HasColumnType("nchar");*/ //t7awlt l FlightConfiguration.cs
             modelBuilder.ApplyConfiguration(new FlightConfiguration());
             modelBuilder.ApplyConfiguration(new PassengerConfiguration());  
+            modelBuilder.ApplyConfiguration(new TicketConfiguration());  
             modelBuilder.Entity<Passenger>().ToTable(nameof(Passenger));// ou chaine "" f blaset nameof
             modelBuilder.Entity<Traveller>().ToTable(nameof(Traveller));
             modelBuilder.Entity<Staff>().ToTable(nameof(Staff));
