@@ -18,7 +18,9 @@ namespace AM.ApplicationCore.Domain
         [ForeignKey(nameof(Plane))]//==[ForeignKey(Plane)]
         public int ? PlaneFK { get; set; }//? nullable
         public Plane ? plane { get; set; }//prop de navigation
-        public ICollection<Passenger> passengers { get; set; }
+        //public ICollection<Passenger> passengers { get; set; }
+       // public IList<Passenger> Passes{ get; set; }
+        public IList<Ticket> Tickets{ get; set; }
         public override string ToString()
         {
             return FlightId + " " + Destination + " " + Departure + " " + FlightDate + " " + EffectiveArrival + " " + EstimationDuration;

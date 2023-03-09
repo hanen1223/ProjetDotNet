@@ -218,12 +218,12 @@ namespace AM.ApplicationCore.Services
         //List<Passenger> SensiorTravellers(Flight flight)
         public List<Traveller> SeniorTravellers(Flight flight)
         {
-            var query = flight.passengers.OfType<Traveller>()
-               // .Where(p => p is Traveller)
-                .OrderBy(p => p.BirthDate).Take(3).ToList();
-            List<Passenger> p = new List<Passenger>(query); //cas implicite w9t n5alou return passenger
-            //return query.ToList();
-            return query;
+            //var query = flight.Passengers.OfType<Traveller>()
+            //   // .Where(p => p is Traveller)
+            //    .OrderBy(p => p.BirthDate).Take(3).ToList();
+            //List<Passenger> p = new List<Passenger>(query); //cas implicite w9t n5alou return passenger
+            ////return query.ToList();
+            return null;
         }
         public void DestinationGroupedFlights()
         {
