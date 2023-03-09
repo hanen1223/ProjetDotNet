@@ -5,7 +5,7 @@
 namespace AM.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class preconvention3 : Migration
+    public partial class ticket4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

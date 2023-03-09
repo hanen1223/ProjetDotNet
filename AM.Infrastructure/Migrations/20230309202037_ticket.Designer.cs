@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.Infrastructure.Migrations
 {
     [DbContext(typeof(AMContexte))]
-    [Migration("20230302154320_association")]
-    partial class association
+    [Migration("20230309202037_ticket")]
+    partial class ticket
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,16 +43,17 @@ namespace AM.Infrastructure.Migrations
 
                     b.Property<string>("Destination")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<DateTime>("EffectiveArrival")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("EstimationDuration")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FlightDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int?>("PlaneFK")
                         .HasColumnType("int");
@@ -74,38 +75,25 @@ namespace AM.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassportNumber"));
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("date");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("TelNumber")
+                        .HasMaxLength(25)
                         .HasColumnType("int");
 
                     b.HasKey("PassportNumber");
 
-                    b.ToTable("Passengers");
+                    b.ToTable("Passenger", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Passenger");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Domain.Plane", b =>
@@ -120,7 +108,7 @@ namespace AM.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ManufactureDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("planeType")
                         .HasColumnType("int");
@@ -130,19 +118,40 @@ namespace AM.Infrastructure.Migrations
                     b.ToTable("Planes");
                 });
 
-            modelBuilder.Entity("FlightPassenger", b =>
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Ticket", b =>
                 {
-                    b.Property<int>("FlightsFlightId")
+                    b.Property<string>("passanFK")
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<int>("FlightFK")
                         .HasColumnType("int");
 
-                    b.Property<int>("passengersPassportNumber")
+                    b.Property<int>("FlightId")
                         .HasColumnType("int");
 
-                    b.HasKey("FlightsFlightId", "passengersPassportNumber");
+                    b.Property<int>("PassengerPassportNumber")
+                        .HasColumnType("int");
 
-                    b.HasIndex("passengersPassportNumber");
+                    b.Property<double>("Prix")
+                        .HasPrecision(2, 3)
+                        .HasColumnType("float(2)");
 
-                    b.ToTable("My Reservation", (string)null);
+                    b.Property<string>("Siege")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<bool>("VIP")
+                        .HasColumnType("bit");
+
+                    b.HasKey("passanFK", "FlightFK");
+
+                    b.HasIndex("FlightId");
+
+                    b.HasIndex("PassengerPassportNumber");
+
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Domain.Staff", b =>
@@ -150,16 +159,18 @@ namespace AM.Infrastructure.Migrations
                     b.HasBaseType("AM.ApplicationCore.Domain.Passenger");
 
                     b.Property<DateTime>("EmployementDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Function")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<double>("Salary")
-                        .HasColumnType("float");
+                        .HasPrecision(2, 3)
+                        .HasColumnType("float(2)");
 
-                    b.HasDiscriminator().HasValue("Staff");
+                    b.ToTable("Staff", (string)null);
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Domain.Traveller", b =>
@@ -168,13 +179,15 @@ namespace AM.Infrastructure.Migrations
 
                     b.Property<string>("HealthInformation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<string>("Nationality")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
-                    b.HasDiscriminator().HasValue("Traveller");
+                    b.ToTable("Traveller", (string)null);
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Domain.test2", b =>
@@ -184,7 +197,7 @@ namespace AM.Infrastructure.Migrations
                     b.Property<int>("MyProperty")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("test2");
+                    b.ToTable("test2s");
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Domain.Flight", b =>
@@ -197,19 +210,90 @@ namespace AM.Infrastructure.Migrations
                     b.Navigation("plane");
                 });
 
-            modelBuilder.Entity("FlightPassenger", b =>
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Passenger", b =>
                 {
-                    b.HasOne("AM.ApplicationCore.Domain.Flight", null)
-                        .WithMany()
-                        .HasForeignKey("FlightsFlightId")
+                    b.OwnsOne("AM.ApplicationCore.Domain.FillName", "fillName", b1 =>
+                        {
+                            b1.Property<int>("PassengerPassportNumber")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasMaxLength(30)
+                                .HasColumnType("nvarchar(30)");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasMaxLength(30)
+                                .HasColumnType("nvarchar(30)")
+                                .HasColumnName("lastname");
+
+                            b1.HasKey("PassengerPassportNumber");
+
+                            b1.ToTable("Passenger");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PassengerPassportNumber");
+                        });
+
+                    b.Navigation("fillName")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Ticket", b =>
+                {
+                    b.HasOne("AM.ApplicationCore.Domain.Flight", "Flight")
+                        .WithMany("Tickets")
+                        .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AM.ApplicationCore.Domain.Passenger", null)
-                        .WithMany()
-                        .HasForeignKey("passengersPassportNumber")
+                    b.HasOne("AM.ApplicationCore.Domain.Passenger", "Passenger")
+                        .WithMany("Tickets")
+                        .HasForeignKey("PassengerPassportNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Flight");
+
+                    b.Navigation("Passenger");
+                });
+
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Staff", b =>
+                {
+                    b.HasOne("AM.ApplicationCore.Domain.Passenger", null)
+                        .WithOne()
+                        .HasForeignKey("AM.ApplicationCore.Domain.Staff", "PassportNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Traveller", b =>
+                {
+                    b.HasOne("AM.ApplicationCore.Domain.Passenger", null)
+                        .WithOne()
+                        .HasForeignKey("AM.ApplicationCore.Domain.Traveller", "PassportNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AM.ApplicationCore.Domain.test2", b =>
+                {
+                    b.HasOne("AM.ApplicationCore.Domain.Staff", null)
+                        .WithOne()
+                        .HasForeignKey("AM.ApplicationCore.Domain.test2", "PassportNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Flight", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("AM.ApplicationCore.Domain.Passenger", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Domain.Plane", b =>
