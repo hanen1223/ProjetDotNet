@@ -17,7 +17,7 @@ namespace AM.Infrastructure.Configuration
                 f.Property(h => h.FirstName).IsRequired().HasMaxLength(30);
                 f.Property(h => h.LastName).IsRequired().HasMaxLength(30).HasColumnName("lastname");
                 });//type de tenu ==owns
-            builder.HasDiscriminator<int>("type").HasValue<Passenger>(0).HasValue<Staff>(2).HasValue<Traveller>(5).HasValue<test2>(6);
+            //builder.HasDiscriminator<int>("type").HasValue<Passenger>(0).HasValue<Staff>(2).HasValue<Traveller>(5).HasValue<test2>(6);//TPH
         }
     }
 }
