@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace AM.ApplicationCore.Services
 {
-    public class ServiceFlight : IServiceFlight
+    public class ServiceFlight : Service<Flight>,IServiceFlight
     {
        
         public List<Flight> Flights { get; set; } = new List<Flight>();
@@ -271,7 +271,7 @@ namespace AM.ApplicationCore.Services
         /************* Partie IV*****************/
         public Action<Plane> FlightDetailsDel { get; set; }//prop +double tabulation
         public Func<string, double> DurationAverageDel { get; set; }
-        public ServiceFlight()//ctor +double tabulation
+        public ServiceFlight(IUnitOfWork uow):base(uow)//ctor +double tabulation
         {
             /*FlightDetailsDel = ShowFlightDetails;
              DurationAverageDel = DurationAverage; */
