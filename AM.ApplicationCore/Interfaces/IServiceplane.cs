@@ -11,5 +11,7 @@ namespace AM.ApplicationCore.Interfaces
     {
         public IList<Passenger> GetPassenger(Plane plane);
         public IList<Flight> GetFlights(int n);
+        public bool IsAvailablePlane(Flight f, int n);
+        public void DeletePlanes();
     }
 }
