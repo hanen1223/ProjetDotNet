@@ -1,14 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AM.ApplicationCore.Interfaces;
+using AM.ApplicationCore.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AM.UI.WEB.Controllers
 {
     public class FlightController : Controller
-    {
+    {  
+        IServiceFlight serviceFlight;//attribut
+        public FlightController(IServiceFlight serviceflight)//ctrl+espace l IServiceFlight
+        {
+            this.serviceFlight = serviceflight;
+        }
         // GET: FlightController
         public ActionResult Index()
         {
-            return View();
+            var flight = serviceFlight.GetAll();
+
+            return View(flight);
         }
 
         // GET: FlightController/Details/5
