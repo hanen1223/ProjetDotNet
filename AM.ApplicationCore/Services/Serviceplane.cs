@@ -52,7 +52,14 @@ namespace AM.ApplicationCore.Services
         }
         public void DeletePlanes()
         {
-
+            //var l=GetAll().Where(p => (DateTime.Now - p.ManufactureDate).TotalDays > 3650);
+            //  foreach (var p in l)
+            //  {
+            //      Delete(p);
+            //  }
+            //  Commit();// sauvegarde f base
+            Delete(p => (DateTime.Now - p.ManufactureDate).TotalDays > 3650);
+            Commit();
         }
     }
 }
