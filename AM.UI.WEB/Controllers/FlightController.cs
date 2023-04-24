@@ -1,22 +1,42 @@
-﻿using AM.ApplicationCore.Interfaces;
+﻿using AM.ApplicationCore.Domain;
+using AM.ApplicationCore.Interfaces;
 using AM.ApplicationCore.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AM.UI.WEB.Controllers
 {
     public class FlightController : Controller
     {  
         IServiceFlight serviceFlight;//attribut
-        public FlightController(IServiceFlight serviceflight)//ctrl+espace l IServiceFlight
+        IServiceplane serviceplane;
+        public FlightController(IServiceFlight serviceflight, IServiceplane serviceplane)//ctrl+espace l IServiceFlight
         {
             this.serviceFlight = serviceflight;
+            this.serviceplane = serviceplane;
         }
         // GET: FlightController
-        public ActionResult Index()
+        public ActionResult Index(string Destination,string Departure)
         {
             var flight = serviceFlight.GetAll();
-
+            if (Destination != null && Departure!=null)
+            {
+            //    return View(flight);
+            //}
+            //else
+            //{
+               // var flight = serviceFlight.GetAll().Where(f=>f.Destination.Contains(Destination));
+                flight = flight.Where(f=>f.Destination.Contains(Destination)&& f.Departure.Contains(Departure));
+            }
+            else if (Destination!=null)
+            {
+                flight = flight.Where(f => f.Destination.Contains(Destination));
+            }
+            else if( Departure!= null)
+            {
+                flight = flight.Where(f => f.Departure.Contains(Departure));
+            }
             return View(flight);
         }
 
@@ -28,17 +48,20 @@ namespace AM.UI.WEB.Controllers
 
         // GET: FlightController/Create
         public ActionResult Create()
-        {
+        {    
+            ViewBag.planes = new SelectList(serviceplane.GetAll(),"PlaneId","Information");// selectlist = tselecti ml liste ay k3ba t7b 3leha
             return View();
         }
 
         // POST: FlightController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Flight collection)
         {
+
             try
-            {
+            {            serviceFlight.Add(collection);
+            serviceFlight.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch
