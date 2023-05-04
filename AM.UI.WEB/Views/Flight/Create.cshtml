@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="create">
+        <form asp-action="create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Destination" class="control-label"></label>
@@ -23,7 +23,7 @@
             </div>
                 <div class="form-group">
                     <label asp-for="Pilote" class="control-label"></label>
-                    <input asp-for="Pilote" class="form-control" />
+                    <input type="file"  name="PiloteFile" class="form-control" />
                     <span asp-validation-for="Pilote" class="text-danger"></span>
                 </div>
             <div class="form-group">

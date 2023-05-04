@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GzGbLQWToRi9EAnDrkCAOW/thx1YM4TRjW4N2FVxjQM=",
+  "Hash": "pbdN9dw8rloga70i9RmDicD/XzNM5Be7lGhEpxqgrXQ=",
   "Source": "AM.UI.WEB",
   "BasePath": "_content/AM.UI.WEB",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.WEB\\wwwroot\\img\\camp.png",
+      "SourceId": "AM.UI.WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.WEB\\wwwroot\\",
+      "BasePath": "_content/AM.UI.WEB",
+      "RelativePath": "img/camp.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\camp.png"
+    },
+    {
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.WEB\\wwwroot\\img\\image-removebg-preview (1).png",
+      "SourceId": "AM.UI.WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.WEB\\wwwroot\\",
+      "BasePath": "_content/AM.UI.WEB",
+      "RelativePath": "img/image-removebg-preview (1).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\image-removebg-preview (1).png"
     },
     {
       "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\4SE5\\2 semestre\\.net\\ProjetDotNet\\AM.UI.WEB\\wwwroot\\js\\site.js",

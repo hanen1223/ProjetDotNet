@@ -4,6 +4,7 @@ using AM.ApplicationCore.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualBasic;
 
 namespace AM.UI.WEB.Controllers
 {
@@ -56,13 +57,17 @@ namespace AM.UI.WEB.Controllers
         // POST: FlightController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Flight collection)
+        public ActionResult Create(Flight collection,IFormFile PiloteFile)
         {
 
             try
-            {            serviceFlight.Add(collection);
+            { var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","img",PiloteFile.FileName); //var path = Path.Combine(Directory.GetCurrentDirectory())==>C:/AM.UI.WEB
+              var stream = new FileStream(path,FileMode.Create);//objet pour manipuler le file
+                PiloteFile.CopyTo(stream);//pour enregistrement
+                collection.Pilote=PiloteFile.FileName;
+            serviceFlight.Add(collection);
             serviceFlight.Commit();
-                return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
             }
             catch
             {
