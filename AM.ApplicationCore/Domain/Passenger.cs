@@ -31,7 +31,7 @@ namespace AM.ApplicationCore.Domain
         public int PassportNumber { get; set; }
         public int Id { get; set; }
         //public ICollection<Flight> Flights { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        public virtual List<Ticket> Tickets { get; set; }
         //public override string ToString()
         //{
         //    return base.ToString();

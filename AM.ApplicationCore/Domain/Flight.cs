@@ -18,10 +18,10 @@ namespace AM.ApplicationCore.Domain
         public int EstimationDuration { get; set; }
         [ForeignKey(nameof(Plane))]//==[ForeignKey(Plane)]
         public int ? PlaneFK { get; set; }//? nullable
-        public Plane ? plane { get; set; }//prop de navigation
+        public virtual Plane ? plane { get; set; }//prop de navigation
         //public ICollection<Passenger> passengers { get; set; }
        // public IList<Passenger> Passes{ get; set; }
-        public IList<Ticket> Tickets{ get; set; }
+        public virtual IList<Ticket> Tickets{ get; set; }
         public override string ToString()
         {
             return FlightId + " " + Destination + " " + Departure + " " + FlightDate + " " + EffectiveArrival + " " + EstimationDuration;

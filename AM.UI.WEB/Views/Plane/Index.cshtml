@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.PlaneId)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Flights)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.planeType)
             </th>
             <th>
@@ -42,6 +45,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PlaneId)
             </td>
+                <td>
+                    @foreach (var flight in item.Flights)
+                    {
+                         <partial name="_FlightDetails" model="flight"/>
+                    }
+                   
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.planeType)
             </td>

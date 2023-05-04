@@ -38,13 +38,14 @@ namespace AM.UI.WEB.Controllers
             {
                 flight = flight.Where(f => f.Departure.Contains(Departure));
             }
-            return View(flight);
+            return View(flight.ToList());
         }
 
         // GET: FlightController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var flight = serviceFlight.GetById(id);
+            return View(flight);
         }
 
         // GET: FlightController/Create
@@ -78,16 +79,19 @@ namespace AM.UI.WEB.Controllers
         // GET: FlightController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var flight = serviceFlight.GetById(id);
+            return View(flight);
         }
 
         // POST: FlightController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Flight collection)
         {
             try
             {
+                serviceFlight.Update(collection);
+                serviceFlight.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -99,16 +103,20 @@ namespace AM.UI.WEB.Controllers
         // GET: FlightController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var flight = serviceFlight.GetById(id);
+            return View(flight);
         }
 
         // POST: FlightController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Flight collection)
         {
             try
             {
+                var flight = serviceFlight.GetById(id);
+                serviceFlight.Delete(flight);
+                serviceFlight.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch

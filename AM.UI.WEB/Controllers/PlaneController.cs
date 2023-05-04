@@ -16,7 +16,7 @@ namespace AM.UI.WEB.Controllers
         // GET: PlaneController
         public ActionResult Index()
         {
-            var planes = serviceplane.GetAll();
+            var planes = serviceplane.GetAll().ToList();
             return View(planes);//dans edge : nomcontroller/nom methode
         }
 

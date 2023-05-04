@@ -41,6 +41,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PlaneFK)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.plane)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -71,10 +74,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PlaneFK)
             </td>
+                <td>
+                    <partial name="_PlaneDetails" model="item.plane">
+                </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.FlightId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.FlightId }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.FlightId})
             </td>
         </tr>
 }
